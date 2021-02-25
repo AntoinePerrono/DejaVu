@@ -1,0 +1,13 @@
+body {
+    position: relative;
+}
+
+.navbar-item-custom, .navbar-item-custom a {
+    color: #FFFFFF;
+}
+
+.movie-container{
+    margin-top: 7em;
+    margin-bottom: 3em;
+}
+

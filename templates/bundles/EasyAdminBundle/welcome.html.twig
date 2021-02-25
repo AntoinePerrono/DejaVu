@@ -1,0 +1,18 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_title 'Panneau de Contrôle Administrateur' %}
+
+{% block page_content %}
+    <div class="container">
+        <div class="row">
+            <div class=" mr-2">
+                <span class="display-3">{{ nbFilms }}</span> films enregistrés actuellement.
+            </div>
+            <div class="ml-2">
+                <span class="display-3">{{ nbUsers }}</span> utilisateurs inscrit.
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>{% block title %}DéjàVu ?{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/dejaVu.css') }}">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('assets/css/album.css')}}" rel="stylesheet">
+</head>
+<body>
+<main role="main">
+<header>
+    <nav class="navbar fixed-top navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+            <a href="{{ path('home') }}" class="navbar-brand d-flex align-items-center">
+                <strong>DéjàVu ?</strong>
+            </a>
+            {% if app.user %}
+                <ul class=" navbar-nav mr-auto ml-5">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('favoris') }}">Mes favoris</a>
+                    </li>
+                </ul>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <ul class=" navbar-nav mr-auto ml-5">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ path('admin') }}">Vous êtes administrateur: accéder au panneau de controle</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+
+
+            {% endif %}
+        </div>
+        <div class='navbar-item-custom'>
+            {% if app.user %}
+                <a href="{{ path('account') }}">Mon compte <small>({{ app.user.pseudo }})</small></a> | <a href="{{ path('app_logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Connexion</a> | <a href="{{ path('inscription') }}">Inscription</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>
+{% if block('bandeau') is defined %}
+    <section class="jumbotron text-center mt-5">
+        <div class="container">
+            {% if app.user %}
+                <h1>Votre avis compte {{ app.user.pseudo }} !</h1>
+                <div class="lead text-muted">Partagez le au monde entier !</div>
+                <small class="lead text-muted">Venez, explorez & likez</small>
+            {% else %}
+                <h1>Votre avis compte !</h1>
+            <div class="lead text-muted">Connectez-vous et partagez le au monde entier !</div>
+                <small class="lead text-muted">Venez, explorez & likez</small>
+            <p>
+                <a href="{{ path('inscription') }}" class="btn btn-primary my-2">S'inscrire</a>
+                <a href="{{ path('app_login') }}" class="btn btn-secondary my-2">Se connecter</a>
+            </p>
+            {% endif %}
+        </div>
+    </section>
+{% endif %}
+<div class="container marketing{% if block('bandeau') is not defined%} mt-5"{% endif %}>
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+<footer class="text-muted">
+    <div class="container border-top">
+        <p class="float-right">
+            <a href="#">Back to top</a>
+        </p>
+        <p>DéjàVu? est le numéro un mondiale de partage d'avis sur les films.</p>
+        <p>Venez, explorez, likez ou mettez en favoris, DéjàVu? vous offre de nombreuse possibilités sur tout les films qui ont vu le jours.</p>
+    </div>
+</footer>
+</main>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+</html>

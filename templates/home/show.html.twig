@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ movie.name }}{% endblock %}
+
+{% block content %}
+    <div class="row movie-container">
+        <div class="col-md-5">
+            <img src="/uploads/{{ movie.image }}" alt="{{ movie.name }}" class="img-fluid">
+        </div>
+        <div class="col-md-7 my-auto">
+            <h3>{{ movie.name }}</h3>
+            <hr/>
+            <p>{{ movie.description }}</p>
+            {% if app.user %}
+                {% if favori %}
+                    <a href="{{ path('deleteToFav', {'movie' : movie.id}) }}" class="btn btn-info">Supprimer des favoris</a>
+                {% else %}
+                    <a href="{{ path('addToFav', {'movie' : movie.id}) }}" class="btn btn-info">Ajouter au favoris</a>
+                {% endif %}
+            <hr>
+                <p>Note de ce film: {{ note }}</p>
+                <p>Nombre de votant: {{ nbLike }}</p>
+            <a href="{{ path('like', {'movie' : movie.id}) }}" class="btn btn-success">Liker</a>
+            <a href="{{ path('dislike', {'movie' : movie.id}) }}" class="btn btn-danger">Disliker</a>
+            {% else %}
+                <a href="#" class="btn btn-info disabled" aria-disabled="true">Ajouter au favoris</a>
+                <hr>
+                <p>Note de ce film: {{ note }}</p>
+                <p>Nombre de votant: {{ nbLike }}</p>
+                <a href="#" class="btn btn-success disabled" aria-disabled="true">Liker</a>
+                <a href="#" class="btn btn-danger disabled" aria-disabled="true">Disliker</a>
+            {% endif %}
+        </div>
+    </div>
+    <hr>
+    <div class="comments">
+        <h3>Commentaires :</h3>
+        {% if app.user %}
+        {{ form(commentForm) }}
+        {% endif %}
+        <div class="container">
+        {% for comment in comments %}
+            {% include 'comments/_comment.html.twig' with {'comment':comment} %}
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

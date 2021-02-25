@@ -1,0 +1,10 @@
+<div class="col-md-3">
+    <div class="card mb-4 shadow-sm">
+        <a href="{{ path('movie', {'slug' : movie.slug}) }}" ><img src="/uploads/{{ movie.image }}" alt="{{ movie.name }}" class="img-fluid w-100 "></a>
+        <div class="card-body">
+            <p class="card-text"><strong>{{ movie.name }}</strong></p>
+            <p class="card-text">Note: <strong>{{ movie.note }}</strong></p>
+            <p class="card-text ">Nombre de note: <strong>{{ movie.noters|length }}</strong></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="col rounded bg-light shadow p-3 mb-5 bg-white rounded rounded m-2">
+    <p>{{ comment.content }}</p>
+
+    <div class="row">
+        <span class="col-6">By {{ comment.user.pseudo }}</span>
+        <span class="col-6 ">{{ comment.date|date('d/m/y - H:i') }}</span>
+    </div>
+</div>
